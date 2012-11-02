@@ -1,0 +1,123 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <LINK href="stylesheet.css" rel="stylesheet" type="text/css">
+  <title>SNOVIEW</title>
+  <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script> 
+     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.geom.js"></script> 
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+  <script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js"></script> 
+<script type="text/javascript" src="prettyprint.js"></script>
+
+  </head>
+
+<body>
+
+
+
+<div id="demo"></div>
+
+ <div id="wrapper">
+      <div id="header">
+        <div id="header-content">SNOVIEW </div></div>
+      <div id="content">
+          <div id="sidebar">
+           <div id="stylized" class="myform">
+  <form action="" method="GET">
+     Input  focus set (comma seperated): 
+    <textarea id="userInput" COLS=30 ROWS=6>442083009, 119184005</textarea><br>
+   <button id="load" type="button">Load</button> 
+    </form>
+   </div>          
+          </div>
+          <div id="main">   
+           
+          </div>
+          
+    </div>
+      <div class="push"></div>
+  </div>
+  <div id="footer"><div id="footer-content">Anne Randorff Højen. Aalborg Universitet</div></div>
+
+</body>
+
+<script>
+
+document.getElementById("load").onclick=function(){run()};
+
+function run() {
+	//document.getElementById("main").innerHTML='i run';
+	var input = document.getElementById('userInput').value;	
+	
+	$.getJSON(
+	"serverResponse.php", // The server URL 
+	{ input: input }, // Data you want to pass to the server.
+	function(data) {
+   show(data);
+
+});
+	
+	
+		//document.getElementById("main").innerHTML='efter';
+}
+	
+function show(json) {
+var data = JSON.stringify(json, null, 4);
+//graph(json);
+
+document.getElementById("main").innerHTML=data;
+
+}
+
+
+
+function graph(data){
+	
+
+var nodeSet = data["nodes"];
+var linkSet = data["links"];
+
+      var node_hash = [];
+      var type_hash = [];
+
+      // Create a hash that allows access to each node by its id
+      nodeSet.forEach(function(d, i) {
+        node_hash[d.id] = d;
+        type_hash[d.term] = d.term;
+      });
+   
+      // Append the source object node and the target object node to each link
+      linkSet.forEach(function(d, i) {
+        d.source = node_hash[d.sourceId];
+        d.target = node_hash[d.targetId];
+      });
+//document.writeln(linkSet[1].sourceId); // outputs friendly   
+var width = 960,
+     height = 500;
+ 
+ var color = d3.scale.category20();
+ 
+ var force = d3.layout.force()
+     .charge(-120)
+     .linkDistance(30)
+     .size([width, height]);
+ 
+ var svg = d3.select("#main").append("svg")
+     .attr("width", width)
+     .attr("height", height);
+ 
+ 
+}
+	
+	
+
+
+
+</script>
+
+
+  </html>
+
+
+

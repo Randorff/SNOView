@@ -1,0 +1,265 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+    min-height: 100%;
+    height: 100%;
+}
+#wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
+    position: relative
+}
+#footer {
+    height: 50px;
+	background-color: #00C;
+	color: #FFF;
+}
+#footer-content {
+    border: 1px solid magenta;
+    height: 32px; /* height + top/bottom paddding + top/bottom border must add up to footer height */
+    padding: 8px;
+}
+.push {
+    height: 50px;
+    clear: both;
+}
+
+#header {
+	height: 50px;
+	background-color: #00C;
+	color: #FFF;
+}
+#header-content {
+	border: 1px solid magenta;
+	height: 32px; /* height + top/bottom paddding + top/bottom border must add up to footer height */
+	padding: 8px;
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 24px;
+	font-style: italic;
+	co	text-decoration: underline;
+}
+
+#content {
+	height: 100%;
+	background-color: #F0F0FF;
+}
+#sidebar1 {
+	border: 1px solid skyblue;
+	width: 300px;
+	position: absolute;
+	left: 0px;
+	top: 50px;
+	bottom: 50px;
+	padding: 8px;
+	background-color: #BBF;
+}
+
+#right_sidebar {
+	border: 1px solid skyblue;
+	width: 180px;
+	left: 0px;
+	top: 50px;
+	bottom: 50px;
+	padding: 8px;
+	background-color: #BBF;
+	float: right;
+	position:absolute
+}
+
+#main {
+	margin-left: 350px
+}
+/*div.node { 
+  border-radius: 6px; 
+  width: 12px; 
+  height: 12px; 
+  margin: -6px 0 0 -6px; 
+  position: absolute; 
+} */
+ 
+div.link { 
+  position: absolute; 
+  border-bottom: solid #999 1px; 
+  height: 0; 
+  -webkit-transform-origin: 0 0; 
+  -moz-transform-origin: 0 0; 
+  -ms-transform-origin: 0 0; 
+  -o-transform-origin: 0 0; 
+  transform-origin: 0 0; 
+} 
+.node { 
+  fill: #000; 
+  /*stroke: #fff;*/ 
+  stroke-width: 1.5px; 
+} 
+ 
+.link { 
+  stroke: #aaa; 
+  stroke-width: 1.5px; 
+} 
+
+/* Force layout (SNOMED CT graph)*/
+
+.node {
+  font: 10px sans-serif;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.label>text {
+  text-anchor: middle; /* Place text centered ()instead of the default to the right of the node)*/  
+  font: 10px sans-serif;
+  display:none; /* Hide text as default */
+  /* display:inline; */ /* Show text as default */
+  
+  /* Avoid that the node texts don't get selected instead of the nodes (even though the text is on top)*/
+  pointer-events: none; 
+}
+
+text {   
+  /* regarding below see http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting */ 
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;  
+}
+
+.label>text.shadow {
+  stroke: #fff;
+  stroke-width: 3px;
+  stroke-opacity: .8;
+}
+
+.label.active-incoming>.shadow {
+  stroke: #91BFDB;
+}
+.node.active-incoming circle {
+  fill: #91BFDB;
+}
+
+.label.active>.shadow {
+  /* stroke: #FFFFBF; */
+  stroke: yellow;
+}
+.node.active> circle {
+  fill: #FFFFBF;
+}
+
+.label.active-outgoing>.shadow {
+  stroke: #FC8D59;
+}
+.node.active-outgoing circle {
+  fill: #FC8D59;
+  /* stroke: #FC8D59; */
+}
+
+.active>text {
+  display:inline;
+}
+.active-incoming>text {
+  display:inline;
+}
+.active-outgoing>text {
+  display:inline;
+}
+.crosslinkTarget text{
+  display:inline;
+}
+
+
+.fixed>text {
+	display:inline;
+	fill: blue;
+}
+
+
+
+.link {
+  stroke: gray;
+  fill: none;
+  stroke-width: 1.5px;
+}
+
+.link.crossLink {
+  stroke: steelblue;
+  fill: none;
+  stroke-width: 0.5px;
+  stroke-dasharray: 10,5;
+}
+
+
+/*
+.active {
+  filter: url(#dropshadow);
+}
+*/
+
+
+/* Dendrogram tree layout (EHR document template tree)*/
+
+.treeNode {
+  font: 10px sans-serif;
+ }
+ 
+.treeNode:hover { filter: url(#dropshadow); }
+ 
+.treeNode circle {
+  /* pointer-events: none; */ 
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.treeNode.activeTreeNode circle {
+  fill: #f88;
+}
+
+.treeLink {
+  stroke: lightgray;
+  fill: none;
+  stroke-width: 1.5px;
+}
+
+.treeText.leaf {
+  fill: gray;
+}
+
+:hoover.treeText.leaf {
+  fill: black;
+}
+
+.treeText.node {
+  fill: gray;
+}
+
+
+.contentWidth {
+  /* border: 1px red solid; */
+  width: 100%;
+  align: center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#mainVis {
+  border: 1px gray solid;
+}
+
+
+.node text {
+  pointer-events: none;
+  font: 10px sans-serif;
+}
+
+
+
+/* image { pointer-events: painted; } */
+/* image:hover { filter: url(#contour); } */
