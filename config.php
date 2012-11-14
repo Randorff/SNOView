@@ -1,10 +1,10 @@
 <?php
 
 	// Her oprettes forbindelsen til databasen
-		$con = mysql_connect("studdb01.hst.aau.dk", "arra", "Z9CFri8h");
-				mysql_select_db("arra");
+		$con = mysql_connect("host", "un", "pw");
+				mysql_select_db("db_name");
 
-		$DBnavn = 'arra';
+		$DBnavn = 'ooo';
 
 		if (!$con) 
 		{
